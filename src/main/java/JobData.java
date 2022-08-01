@@ -42,9 +42,7 @@ public class JobData {
             }
         }
 
-        // Bonus mission: sort the results
-        Collections.sort(values);
-
+        // Bonus mission: sort the result
         return values;
     }
 
@@ -53,8 +51,10 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+
+
         // Bonus mission; normal version returns allJobs
-        return new ArrayList<>(allJobs);
+        return allJobs;
     }
 
     /**
@@ -79,7 +79,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toUpperCase().contains(value)) {
                 jobs.add(row);
             }
         }
@@ -98,8 +98,21 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+        ArrayList<HashMap<String, String>> allJobs = JobData.findAll();
+        ArrayList<HashMap<String, String>> searchMatches = new ArrayList<>();
+
+        for (HashMap<String, String> row: allJobs) {
+            for (Map.entry<String, String> column: row.entrySet()) {
+                if (column.getValue().toUpperCase().contains(value)) {
+                    if (Arrays.asList(searchMatches).contains(row)) {
+                }
+                    searchMatches.add(row);
+            }
+        }
+
+
         // TODO - implement this method
-        return null;
+        return searchMatches;
     }
 
     /**
@@ -143,4 +156,4 @@ public class JobData {
         }
     }
 
-}
+}}
