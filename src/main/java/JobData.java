@@ -5,11 +5,9 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
-
+import java.util.ArrayList;
+import java.util.*;
 /**
  * Created by LaunchCode
  */
@@ -41,9 +39,13 @@ public class JobData {
                 values.add(aValue);
             }
         }
+        return values;
+    }
 
         // Bonus mission: sort the result
-        return values;
+
+
+    private static void loadData() {
     }
 
     public static ArrayList<HashMap<String, String>> findAll() {
@@ -79,7 +81,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.toUpperCase().contains(value)) {
+            if (value.toUpperCase().contains(value)) {
                 jobs.add(row);
             }
         }
@@ -91,7 +93,7 @@ public class JobData {
      * Search all columns for the given term
      *
      * @param value The search term to look for
-     * @return      List of all jobs with at least one field containing the value
+     * @return
      */
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
@@ -107,6 +109,7 @@ public class JobData {
                     if (Arrays.asList(searchMatches).contains(row)) {
                 }
                     searchMatches.add(row);
+                    break;
             }
         }
 
@@ -118,11 +121,11 @@ public class JobData {
     /**
      * Read in data from a CSV file and store it in a list
      */
-    private static void loadData() {
+        {
 
         // Only load data once
         if (isDataLoaded) {
-            return;
+            return allJobs;
         }
 
         try {
@@ -156,4 +159,5 @@ public class JobData {
         }
     }
 
-}}
+        return allJobs;
+    }}
