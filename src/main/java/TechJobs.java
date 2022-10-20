@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
 /**
  * Created by LaunchCode
  */
@@ -11,7 +10,7 @@ public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
 
         // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
@@ -78,7 +77,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure, so we can
+        // Put the choices in an ordered structure so we can
         // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
@@ -107,31 +106,31 @@ public class TechJobs {
             }
 
             // Validate user's input
-            if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
+            if (choiceIdx < -1 || choiceIdx >= choiceKeys.length) {
                 System.out.println("Invalid choice. Try again.");
             } else {
                 validChoice = true;
             }
 
-        } while (!validChoice);
+        } while(!validChoice);
 
         return choiceKeys[choiceIdx];
     }
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if(someJobs.size() < 1){
+            System.out.print("No Results");
+            return;
+        }
+        for(HashMap<String, String> job : someJobs){
 
-        // System.out.println("printJobs is not implemented yet");
-        if (someJobs.size() < 0) {
-
-            for (HashMap<String, String> aJob : someJobs)
-                System.out.println("\n*****");
-
-            for (Map.Entry<String, String> data : jobs.entrySet()) {
-                System.out.println(data.getKey() + ": " + data.getValue());
+            System.out.println("\n*****");
+            for (Map.Entry<String, String> jobInfo : job.entrySet()) {
+                System.out.println(jobInfo.getKey() + ": " + jobInfo.getValue());
             }
             System.out.println("*****");
-        } else {
-            System.out.println("No Results");
         }
-    }}
+
+    }
+}
