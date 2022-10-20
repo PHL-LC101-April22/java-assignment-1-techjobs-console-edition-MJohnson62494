@@ -106,7 +106,7 @@ public class TechJobs {
             }
 
             // Validate user's input
-            if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
+            if (choiceIdx < -1 || choiceIdx >= choiceKeys.length) {
                 System.out.println("Invalid choice. Try again.");
             } else {
                 validChoice = true;
@@ -119,7 +119,18 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if(someJobs.size() < 1){
+            System.out.print("No Results");
+            return;
+        }
+        for(HashMap<String, String> job : someJobs){
 
-        System.out.println("printJobs is not implemented yet");
+            System.out.println("\n*****");
+            for (Map.Entry<String, String> jobInfo : job.entrySet()) {
+                System.out.println(jobInfo.getKey() + ": " + jobInfo.getValue());
+            }
+            System.out.println("*****");
+        }
+
     }
 }
